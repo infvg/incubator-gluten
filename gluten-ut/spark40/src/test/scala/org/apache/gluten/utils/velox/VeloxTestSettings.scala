@@ -858,7 +858,7 @@ class VeloxTestSettings extends BackendTestSettings {
     // ORC related
     .exclude("SPARK-37965: Spark support read/write orc file with invalid char in field name")
     .exclude("SPARK-38173: Quoted column cannot be recognized correctly when quotedRegexColumnNames is true")
-    // TODO: fix in Spark-4.0
+    // Rewrite with Gluten's explained result.
     .exclude("SPARK-47939: Explain should work with parameterized queries")
   enableSuite[GlutenSQLQueryTestSuite]
   enableSuite[GlutenStatisticsCollectionSuite]
@@ -947,7 +947,8 @@ class VeloxTestSettings extends BackendTestSettings {
     .exclude("Logging plan changes for execution")
     // Rewrite for transformed plan
     .exclude("dumping query execution info to a file - explainMode=formatted")
-    // TODO: fix in Spark-4.0
+    // The case doesn't need to be run in Gluten since it's verifying against
+    // vanilla Spark's query plan.
     .exclude("SPARK-47289: extended explain info")
 
   override def getSQLQueryTestSettings: SQLQueryTestSettings = VeloxSQLQueryTestSettings
